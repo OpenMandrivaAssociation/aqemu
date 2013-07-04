@@ -1,0 +1,69 @@
+*** aqemu-0.8.2/Utils.cpp	2011-07-26 23:40:05.000000000 +0400
+--- AQEMU/Utils.cpp	2012-05-16 11:53:26.000000000 +0400
+***************
+*** 66,74 ****
+  		std::cout << QString( "\nAQEMU Debug [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		qDebug( qPrintable(QString(
+  			"\n\33[32mAQEMU Debug\33[0m [%1] >>>\n\33[32mSender:\33[0m %2\n\33[32mMessage:\33[0m %3")
+! 			.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
+--- 66,78 ----
+  		std::cout << QString( "\nAQEMU Debug [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		/*qDebug( qPrintable(QString(
+  			"\n\33[32mAQEMU Debug\33[0m [%1] >>>\n\33[32mSender:\33[0m %2\n\33[32mMessage:\33[0m %3")
+! 			.arg(Messages_Index).arg(sender).arg(mes)) );*/
+! 		
+! 		qDebug( "%s", qPrintable(QString(
+! 				"\n\33[32mAQEMU Debug\33[0m [%1] >>>\n\33[32mSender:\33[0m %2\n\33[32mMessage:\33[0m %3")
+! 				.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
+***************
+*** 87,95 ****
+  		std::cout << QString( "\nAQEMU Warning [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		qDebug( qPrintable(QString(
+! 			"\n\33[34mAQEMU Warning\33[0m [%1] >>>\n\33[34mSender:\33[0m %2\n\33[34mMessage:\33[0m %3")
+! 			.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
+--- 91,99 ----
+  		std::cout << QString( "\nAQEMU Warning [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		qDebug( "%s", qPrintable(QString(
+! 				"\n\33[34mAQEMU Warning\33[0m [%1] >>>\n\33[34mSender:\33[0m %2\n\33[34mMessage:\33[0m %3")
+! 				.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
+***************
+*** 108,116 ****
+  		std::cout << QString( "\nAQEMU Error [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		qDebug( qPrintable(QString(
+! 			"\n\33[31mAQEMU Error\33[0m [%1] >>>\n\33[31mSender:\33[0m %2\n\33[31mMessage:\33[0m %3")
+! 			.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
+--- 112,120 ----
+  		std::cout << QString( "\nAQEMU Error [%1] >>>\nSender: %2\nMessage: %3" )
+  							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+  	#else
+! 		qDebug( "%s", qPrintable(QString(
+! 				"\n\33[31mAQEMU Error\33[0m [%1] >>>\n\33[31mSender:\33[0m %2\n\33[31mMessage:\33[0m %3")
+! 				.arg(Messages_Index).arg(sender).arg(mes)) );
+  	#endif
+  	}
+  	
