@@ -21,6 +21,8 @@ BuildRequires:	pkgconfig(libvncserver)
 BuildRequires:	desktop-file-utils
 BuildRequires:	gnutls-devel
 BuildRequires: 	hicolor-icon-theme
+BuildRequires:	gcc-c++, gcc, gcc-cpp
+
 Requires: qemu
 
 %description
@@ -35,12 +37,15 @@ majority of QEMU and KVM options on their virtual machines.
 %patch2 -p1
 
 %build
+export CC=gcc
+export CXX=g++
+
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DMAN_PAGE_COMPRESSOR=bzip2
 #cmake
 %make
 
 %install
-make DESTDIR=%{buildroot} install
+%makeinstall_std
 # Copy 48x48 and 64x64 icons to correct location.
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/{48x48,64x64}/apps
 mv %{buildroot}%{_datadir}/pixmaps/%{name}_48x48.png \
@@ -63,4 +68,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 %{_mandir}/man1/%{name}.1*
 
-%changelog
