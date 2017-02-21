@@ -1,51 +1,41 @@
 %define	debug_package	%nil
 
 Name:		aqemu
-Version:	0.8.2
-Release:	10
+Version:	0.9.2
+Release:	1
 Summary:	A QT graphical interface to QEMU and KVM
 Group:		Emulators
 License:	GPLv2+
 URL:		http://aqemu.sourceforge.net
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Patch for desktop file to ensure it shows up in the GNOME overview.
-# Upstream: http://sourceforge.net/tracker/?func=detail&aid=3430317&group_id=229794&atid=1078458
-Patch0:		aqemu-0.8.2-rosa-desktop.patch
-# Fatch for vncview.cp file to disable macro that clashes with QT 4.8.
-# Upstram: http://sourceforge.net/tracker/?func=detail&aid=3429937&group_id=229794&atid=1078458
-Patch1:		aqemu-0.8.2-qt48.patch
-Patch2:		Utils-format-path.patch
-BuildRequires:	qt-devel 
-BuildRequires:	cmake 
+Source0:	https://github.com/tobimensch/aqemu/archive/v%{version}.tar.gz
+Patch0:		aqemu-0.9.2-qtbindir.patch
+BuildRequires:	qt5-devel
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5PrintSupport)
+BuildRequires:	cmake(Qt5Test)
+BuildRequires:	cmake(Qt5DBus)
+BuildRequires:	cmake
 BuildRequires:	pkgconfig(libvncserver)
 BuildRequires:	desktop-file-utils
 BuildRequires:	gnutls-devel
-BuildRequires: 	hicolor-icon-theme
-BuildRequires:	gcc-c++, gcc, gcc-cpp
 
 Requires: qemu
 
 %description
-AQEMU is a graphical user interface to QEMU and KVM, written in Qt4. The 
-program has a user-friendly interface and allows user to set the 
+AQEMU is a graphical user interface to QEMU and KVM, written in Qt4. The
+program has a user-friendly interface and allows user to set the
 majority of QEMU and KVM options on their virtual machines.
 
 %prep
 %setup -q
-%patch0
-%patch1
-%patch2 -p1
+%apply_patches
 
 %build
-export CC=gcc
-export CXX=g++
-
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DMAN_PAGE_COMPRESSOR=bzip2
-#cmake
+%cmake
 %make
 
 %install
-%makeinstall_std
+%makeinstall_std -C build
 # Copy 48x48 and 64x64 icons to correct location.
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/{48x48,64x64}/apps
 mv %{buildroot}%{_datadir}/pixmaps/%{name}_48x48.png \
@@ -67,4 +57,3 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 %{_mandir}/man1/%{name}.1*
-
