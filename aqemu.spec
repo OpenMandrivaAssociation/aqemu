@@ -2,7 +2,7 @@
 
 Name:		aqemu
 Version:	0.9.2
-Release:	1
+Release:	2
 Summary:	A QT graphical interface to QEMU and KVM
 Group:		Emulators
 License:	GPLv2+
