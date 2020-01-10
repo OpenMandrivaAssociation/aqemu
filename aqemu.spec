@@ -28,7 +28,7 @@ majority of QEMU and KVM options on their virtual machines.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 %cmake
