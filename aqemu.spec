@@ -30,6 +30,7 @@ Requires: qemu
 %{_bindir}/%{name}
 %doc AUTHORS CHANGELOG COPYING TODO
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/appdata/aqemu.appdata.xml
 %{_datadir}/%{name}
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
@@ -61,7 +62,7 @@ export PATH=%{_qt5_bindir}:$PATH
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/{48x48,64x64}/apps
 mv %{buildroot}%{_datadir}/pixmaps/%{name}_48x48.png \
    %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
-mv %{buildroot}%{_datadir}/pixmaps/%{name}_64x64.png \
+mv %{buildroot}%{_datadir}/pixmaps/%{name}.png \
    %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 
 # Remove directories from install which are not being deployed in RPM.
@@ -71,4 +72,3 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
-
