@@ -1,0 +1,11 @@
+diff -up aqemu-0.9.4/src/docopt/docopt_value.h.omv~ aqemu-0.9.4/src/docopt/docopt_value.h
+--- aqemu-0.9.4/src/docopt/docopt_value.h.omv~	2024-04-27 18:49:15.823396240 +0200
++++ aqemu-0.9.4/src/docopt/docopt_value.h	2024-04-27 18:49:21.903468784 +0200
+@@ -13,6 +13,7 @@
+ #include <iosfwd>
+ #include <string>
+ #include <vector>
++#include <stdexcept>
+ 
+ namespace docopt {
+ 

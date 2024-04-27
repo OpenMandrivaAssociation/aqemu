@@ -1,13 +1,15 @@
 Name:		aqemu
-Version:	0.9.2
-Release:	3
+Version:	0.9.4
+Release:	1
 Summary:	A QT graphical interface to QEMU and KVM
 Group:		Emulators
 License:	GPLv2+
-URL:		http://aqemu.sourceforge.net
-Source0:	https://github.com/tobimensch/aqemu/archive/v%{version}.tar.gz
-Patch0:		aqemu-0.9.2-qtbindir.patch
-Patch1:		aqemu-0.9.2-add_missing_libs.patch
+# Originally:
+# URL:		http://aqemu.sourceforge.net
+# Source0:	https://github.com/tobimensch/aqemu/archive/v%{version}.tar.gz
+# Also quite dead, but at least marginally newer fork:
+Source0:	https://github.com/TBK/aqemu/archive/refs/tags/v%{version}.tar.gz
+Patch0:		aqemu-0.9.4-missing-includes.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja
